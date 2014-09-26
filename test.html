@@ -31,26 +31,21 @@
   <!-- <input class="form-control" placeholder="Search Anything About Your Friends" ng-model="searchTerm"> -->
   <!-- The stuff below is For step 5....get rid of the one above if you wish-->
    
-    <input class="form-control" placeholder="Search Your Friends' Name" ng-model="searchTerm.name">
-    <input class="form-control" placeholder="Search Your Friends' Location" ng-model="searchTerm.current_location"> 
+    <input class="form-control" placeholder="Search Your Friends' Name" ng-options="person.name for person in friends">
+    <input class="form-control" placeholder="Search Your Friends' Location" ng-options="person.current_location for person in friends"> 
 
-    <select class="input-medium" ng-model="searchBy">
-        <option value="name">Name</option>
-        <option value ="friend_count"># friends</option>
-        <option value ="current_location.city">City</option>
-        <option value = "current_location.state">State</option>
-        <option value = "current_location.country">Country</option>
+    <select class="input-medium" ng-model="searchBy" ng-options="item as item.label for item in filterOptions">
     </select>
     <select class="input-medium" ng-model="direction">
-        <option value="-">Descending</option>
-        <option value="+">Ascending</option>
+        <option value="false">Descending</option>
+        <option value="true">Ascending</option>
     </select>
   </div>
 </form>
 
 
   <ul >
-    <li class='friend' ng-repeat="person in friends | filter: searchTerm | orderBy: direction + searchBy">{{person.friends}}
+    <li class='friend' ng-repeat="person in friends | filter: searchTerm | orderBy: searchBy.value: direction">{{person.friends}}
        <img class="profile-pic" src="{{person.pic_square}}">
       <h3>{{person.name}}</h3>
       <div class="location">

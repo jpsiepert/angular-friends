@@ -2,6 +2,16 @@ var app = angular.module("facebookApp");
 
 app.controller("friendController", function($scope) {
 	$scope.test= "Hello World";
+
+	$scope.filterOptions = [
+		{label: "Name", value: "name"},
+		{label: "# friends", value: "friend_count"},
+		{label: "City", value: "current_location.city"},
+		{label: "state", value: "current_location.state"},
+		{label: "Country", value: "current_location.country"}
+
+	];
+	
 	$scope.friends = [
     {
         "name": "Preston McNeil",
